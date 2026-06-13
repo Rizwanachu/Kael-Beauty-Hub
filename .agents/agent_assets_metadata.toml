@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "q79SFcsPfOkWuFzAXHMqJ"
+uri = "file://artifacts/kael-beauty/public/images/hero.png"
+type = "image"
+title = "Luxury beauty salon interior"
+
+[[generated]]
+id = "SygzBzzPl8akmX-YxeZR1"
+uri = "file://artifacts/kael-beauty/public/images/insta-1.png"
+type = "image"
+title = "Elegant gel manicure"
+
+[[generated]]
+id = "tDfTnEjioRYDqKW0FSNrN"
+uri = "file://artifacts/kael-beauty/public/images/insta-2.png"
+type = "image"
+title = "Relaxing massage setup"
+
+[[generated]]
+id = "E6FjzqlXx6kE496Q-3Y5D"
+uri = "file://artifacts/kael-beauty/public/images/insta-3.png"
+type = "image"
+title = "Perfectly shaped eyebrows"
+
+[[generated]]
+id = "GCVUzDmrg2GW8SR5NhuyV"
+uri = "file://artifacts/kael-beauty/public/images/insta-4.png"
+type = "image"
+title = "Clean luxury treatment room"
+
+[[generated]]
+id = "GX7Qwt446L8lnHDbbBPVl"
+uri = "file://artifacts/kael-beauty/public/images/team-1.png"
+type = "image"
+title = "Female beauty therapist portrait"
+
+[[generated]]
+id = "yOfUu-wxp1LKUnpy5GEta"
+uri = "file://artifacts/kael-beauty/public/images/team-2.png"
+type = "image"
+title = "Female beauty therapist portrait"
+
+[[generated]]
+id = "FHvoRw6-VQF5XxBFWS8ys"
+uri = "file://artifacts/kael-beauty/public/images/team-3.png"
+type = "image"
+title = "Male massage therapist portrait"
+
+[[generated]]
+id = "tW5t3-FGumDVblP9IHKVZ"
+uri = "file://artifacts/kael-beauty/public/images/team-4.png"
+type = "image"
+title = "Female beauty therapist portrait"
+
+[[generated]]
+id = "0OqaYQ-CQcOcnDPqosw49"
+uri = "file://artifacts/kael-beauty/public/images/team-5.png"
+type = "image"
+title = "Female beauty therapist portrait"

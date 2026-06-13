@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Kael Beauty Centre"
+version = "1.0.0"
+id = "artifacts/kael-beauty"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25830
+
+[services.development]
+run = "pnpm --filter @workspace/kael-beauty run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kael-beauty", "run", "build" ]
+publicDir = "artifacts/kael-beauty/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25830"
+BASE_PATH = "/"

@@ -1,0 +1,94 @@
+Build a modern, premium beauty salon website for "Kael Beauty Centre" located at 115 Earls Court Road, London SW5 9RL. Phone: +44 7886 220689. They book via Treatwell: https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/
+
+Use Next.js 14 (App Router), Tailwind CSS, and Framer Motion for animations.
+
+COLOR PALETTE:
+- Primary: Deep rose/mauve (#8B4A6B or similar)
+- Accent: Warm gold (#C9A96E)
+- Background: Soft ivory/cream (#FAF7F4)
+- Text: Charcoal (#2C2C2C)
+
+PAGES TO BUILD:
+
+1. HOME PAGE
+- Hero section: Full-width background image (use a placeholder), tagline "Where Beauty Meets Care — Earl's Court, London", CTA button "Book Your Appointment" linking to Treatwell
+- 3 feature pillars: Laser & Hair Removal | Beauty & Nails | Massage & Wellness
+- Google review stars (4.3 / 208 reviews) displayed as a trust badge
+- Short "About" blurb: massage and waxing experts since [year], Earl's Court
+- Instagram feed placeholder section (4 image grid)
+- CTA banner: "Ready to Glow?" with Book Now button
+
+2. SERVICES PAGE (3 sections with cards)
+
+LASER & HAIR REMOVAL:
+- Laser Hair Removal (face, body, ears — from £18)
+- Eyebrow Waxing (£12)
+- Brazilian/Hollywood Waxing
+- Full leg, arm, underarm waxing
+- Threading: Eyebrow (£10), Facial
+
+BEAUTY & NAILS:
+- Manicure with Gel Polish (£35)
+- Pedicure (from £30)
+- Full Set Acrylic with Gel Polish (£50)
+- Nail Art (3D, Ombre, Chrome, Cat Eye — from £10)
+- Eyebrow & Eyelash Tinting
+- Lash Lift (£25)
+- Eyelash Extensions
+- Makeup (from £30)
+- Brow Lamination
+
+MASSAGE & WELLNESS:
+- Deep Tissue Massage (£45+)
+- Aromatherapy Massage
+- Reflexology
+- Lymphatic Drainage
+- Back, Neck & Shoulders Massage
+- Head Massage
+- Ear Candling
+
+Each card: service name, short description, price, "Book Now" button linking to Treatwell.
+
+3. ABOUT PAGE
+- Story section: Friendly, warm paragraph about Kael Beauty Centre
+- Meet the Team: Cards for Isha (Beauty Therapist, 4.4★), Paryia (Beauty Therapist, 4.7★), Zed (Massage Therapist, 4.8★), Alysha (Beauty Therapist), Fatma (Beauty Therapist)
+- Values section: "Expert Care · Premium Products · Welcoming Space"
+
+4. GALLERY PAGE
+- 12-image masonry/grid layout with placeholder images
+- Hover zoom effect using Framer Motion
+- Categories: Nails | Brows & Lashes | Massage | Waxing
+
+5. REVIEWS PAGE
+- Highlighted reviews in card format:
+  - "The color has lasted for over a week, which is the longest ever."
+  - "Overall, excellent service at reasonable prices."
+  - "Love my toe nails and she hooked me up with a great price!"
+  - "Super quick and friendly!" — Camila
+  - "It was so quick and flawless. Trusting her got me amazing results." — Sophia
+- Google rating badge (4.4 ★ — 30 reviews) and Treatwell badge (4.3 ★ — 208 reviews)
+- CTA: "Happy with your visit? Leave us a review on Google"
+
+6. CONTACT & BOOKING PAGE
+- Embedded Google Maps for 115 Earls Ct Rd, London SW5 9RL
+- Opening hours:
+  Monday–Saturday: 10:00 AM – 7:00 PM
+  Sunday: 10:00 AM – 5:30 PM
+- WhatsApp button: https://wa.me/447886220689
+- Phone: +44 7886 220689
+- "Book Online" button → Treatwell link
+- Simple contact form (Name, Email, Message, Service interested in)
+
+GLOBAL COMPONENTS:
+- Sticky navbar: Logo | Home | Services | About | Gallery | Reviews | Contact | "Book Now" button (gold)
+- Footer: Address, phone, WhatsApp, Treatwell link, opening hours, social icons (Instagram, Facebook)
+- WhatsApp floating button on all pages (bottom right)
+- Smooth page transitions with Framer Motion
+- Fully mobile responsive
+
+DESIGN STYLE:
+- Clean, minimal, luxury feel
+- Rounded cards with soft shadows
+- Subtle entrance animations (fade-up on scroll)
+- Google Fonts: Playfair Display (headings) + Inter (body)
+- No cluttered layouts — white space is key
