@@ -83,7 +83,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        <motion.div layout className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        <motion.div layout className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           <AnimatePresence>
             {filtered.map((img) => (
               <motion.div
