@@ -27,9 +27,6 @@ export function Navbar() {
           <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-accent">
             Kael Beauty Centre
           </span>
-          <span className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-primary-foreground/60 mt-0.5">
-            Pamper Yourself Because You Deserve It
-          </span>
         </Link>
 
         {/* Desktop Nav */}
