@@ -5,7 +5,7 @@ outputs = []
 id = "q79SFcsPfOkWuFzAXHMqJ"
 uri = "file://artifacts/kael-beauty/public/images/hero.png"
 type = "image"
-title = "Luxury beauty salon interior"
+title = "generated_image"
 
 [[generated]]
 id = "SygzBzzPl8akmX-YxeZR1"
