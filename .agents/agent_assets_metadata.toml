@@ -120,3 +120,21 @@ id = "AYRAE2lB1wp9yeHojNkJw"
 uri = "file://attached_assets/generated_images/professional_waxing_treatment_on_cb6c.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "7HuhB8E2kFrp-G5_WniJR"
+uri = "file://artifacts/kael-beauty/public/images/service-laser.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "w3zOQeQOJCYCccK1Ko6JI"
+uri = "file://artifacts/kael-beauty/public/images/service-nails.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "oH4PCLWgKioMRoIWpexW_"
+uri = "file://artifacts/kael-beauty/public/images/service-massage.png"
+type = "image"
+title = "generated_image"

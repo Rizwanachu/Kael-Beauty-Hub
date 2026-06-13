@@ -2,7 +2,7 @@ import { SEO } from "@/components/SEO";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Sparkles, Flower2, Heart } from "lucide-react";
+import { Flower2, Heart } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -99,20 +99,24 @@ export default function Home() {
       {/* Features */}
       <section className="py-20 bg-card border-y border-border/50">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-4">What We Offer</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">From advanced laser treatments to indulgent massages — everything you need to look and feel your best.</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-6xl mx-auto">
             {[
               {
-                icon: Sparkles,
+                image: "/images/service-laser.png",
                 title: "Laser & Hair Removal",
                 desc: "Precision treatments for smooth, lasting results using advanced technology."
               },
               {
-                icon: Flower2,
+                image: "/images/service-nails.png",
                 title: "Beauty & Nails",
                 desc: "Expert manicures, pedicures, lashes and brows tailored to your unique style."
               },
               {
-                icon: Heart,
+                image: "/images/service-massage.png",
                 title: "Massage & Wellness",
                 desc: "Deeply restorative therapies designed to melt away London's daily stress."
               }
@@ -125,8 +129,12 @@ export default function Home() {
                 transition={{ delay: i * 0.2 }}
                 className="text-center group cursor-default"
               >
-                <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
-                  <feature.icon className="w-10 h-10 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+                <div className="w-28 h-28 mx-auto rounded-full overflow-hidden mb-6 shadow-md ring-2 ring-border group-hover:ring-primary transition-all duration-500">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
                 <h3 className="text-2xl font-serif font-medium mb-4">{feature.title}</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">{feature.desc}</p>
