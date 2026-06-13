@@ -1,10 +1,12 @@
 import { SEO } from "@/components/SEO";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, Search, X } from "lucide-react";
+import { useState, useMemo } from "react";
 
 type ServiceItem = {
   name: string;
@@ -99,50 +101,129 @@ const SERVICES: Record<string, ServiceItem[]> = {
   ],
 };
 
+const ALL_SERVICES = Object.entries(SERVICES).flatMap(([category, items]) =>
+  items.map((item) => ({ ...item, category }))
+);
+
+const PRICE_FILTERS = [
+  { label: "All", key: "all" },
+  { label: "Under £25", key: "under25" },
+  { label: "£25 – £50", key: "25to50" },
+  { label: "Over £50", key: "over50" },
+  { label: "POA", key: "poa" },
+];
+
+function parsePrice(price: string): number {
+  if (price === "POA") return -1;
+  const match = price.match(/£(\d+)/);
+  return match ? parseInt(match[1]) : -1;
+}
+
+function matchesPriceFilter(price: string, filter: string): boolean {
+  if (filter === "all") return true;
+  const val = parsePrice(price);
+  if (filter === "poa") return val === -1;
+  if (val === -1) return false;
+  if (filter === "under25") return val < 25;
+  if (filter === "25to50") return val >= 25 && val <= 50;
+  if (filter === "over50") return val > 50;
+  return true;
+}
+
 const TAB_TRIGGER_CLASS =
   "flex-1 min-w-fit rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none py-3 text-sm md:text-base font-serif px-3";
 
-function ServiceGrid({ items }: { items: ServiceItem[] }) {
+function ServiceCard({ item, index }: { item: ServiceItem; index: number }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
-      {items.map((item, index) => (
-        <motion.div
-          key={item.name}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.04 }}
-        >
-          <Card className="h-full flex flex-col border-border/50 shadow-sm hover:shadow-md transition-shadow hover:border-primary/20">
-            <CardHeader className="pb-3">
-              <div className="flex justify-between items-start gap-3">
-                <CardTitle className="font-serif text-lg leading-tight">{item.name}</CardTitle>
-                <span className="font-semibold text-primary whitespace-nowrap text-sm mt-0.5">{item.price}</span>
-              </div>
-              <CardDescription className="text-sm mt-1">{item.desc}</CardDescription>
-            </CardHeader>
-            <CardContent className="pb-0">
-              {item.duration !== "POA" && (
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>{item.duration}</span>
-                </div>
-              )}
-            </CardContent>
-            <CardFooter className="mt-auto pt-5">
-              <Button asChild variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-primary-foreground text-sm">
-                <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
-                  Book Now
-                </a>
-              </Button>
-            </CardFooter>
-          </Card>
-        </motion.div>
-      ))}
+    <motion.div
+      key={item.name}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ delay: Math.min(index * 0.04, 0.4) }}
+    >
+      <Card className="h-full flex flex-col border-border/50 shadow-sm hover:shadow-md transition-shadow hover:border-primary/20">
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-start gap-3">
+            <CardTitle className="font-serif text-lg leading-tight">{item.name}</CardTitle>
+            <span className="font-semibold text-primary whitespace-nowrap text-sm mt-0.5">{item.price}</span>
+          </div>
+          <CardDescription className="text-sm mt-1">{item.desc}</CardDescription>
+        </CardHeader>
+        <CardContent className="pb-0">
+          {item.duration !== "POA" && (
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{item.duration}</span>
+            </div>
+          )}
+        </CardContent>
+        <CardFooter className="mt-auto pt-5">
+          <Button asChild variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-primary-foreground text-sm">
+            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+              Book Now
+            </a>
+          </Button>
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
+}
+
+function ServiceGrid({ items }: { items: ServiceItem[] }) {
+  if (items.length === 0) {
+    return (
+      <div className="text-center py-16 text-muted-foreground">
+        <Search className="w-10 h-10 mx-auto mb-4 opacity-30" />
+        <p className="text-lg font-medium">No services found</p>
+        <p className="text-sm mt-1">Try adjusting your search or filter.</p>
+      </div>
+    );
+  }
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
+      <AnimatePresence>
+        {items.map((item, index) => (
+          <ServiceCard key={item.name} item={item} index={index} />
+        ))}
+      </AnimatePresence>
     </div>
   );
 }
 
 export default function Services() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [priceFilter, setPriceFilter] = useState("all");
+
+  const isSearching = searchQuery.trim().length > 0;
+
+  const filteredForTab = useMemo(() => {
+    const filter = (items: ServiceItem[]) =>
+      items
+        .filter((item) =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.desc.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .filter((item) => matchesPriceFilter(item.price, priceFilter));
+    return {
+      hair: filter(SERVICES.hair),
+      nails: filter(SERVICES.nails),
+      waxing: filter(SERVICES.waxing),
+      laser: filter(SERVICES.laser),
+      massage: filter(SERVICES.massage),
+    };
+  }, [searchQuery, priceFilter]);
+
+  const searchResults = useMemo(() => {
+    if (!isSearching) return [];
+    return ALL_SERVICES.filter(
+      (item) =>
+        (item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.desc.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        matchesPriceFilter(item.price, priceFilter)
+    );
+  }, [searchQuery, priceFilter, isSearching]);
+
   return (
     <PageTransition>
       <SEO
@@ -171,39 +252,110 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 max-w-6xl">
-        <Tabs defaultValue="hair" className="w-full">
-          <TabsList className="w-full mx-auto flex flex-row flex-wrap h-auto bg-transparent border-b border-border rounded-none p-0 mb-8 gap-0">
-            <TabsTrigger value="hair" className={TAB_TRIGGER_CLASS}>Hair</TabsTrigger>
-            <TabsTrigger value="nails" className={TAB_TRIGGER_CLASS}>Nails</TabsTrigger>
-            <TabsTrigger value="waxing" className={TAB_TRIGGER_CLASS}>Waxing & Threading</TabsTrigger>
-            <TabsTrigger value="laser" className={TAB_TRIGGER_CLASS}>Laser (Permanent)</TabsTrigger>
-            <TabsTrigger value="massage" className={TAB_TRIGGER_CLASS}>Massage & Wellness</TabsTrigger>
-          </TabsList>
+      <div className="container mx-auto px-4 py-12 max-w-6xl">
+        {/* Search & Filter Bar */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <Input
+              placeholder="Search services…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-9 pr-9 bg-background border-border/60 focus-visible:ring-primary/30"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
 
-          <TabsContent value="hair" className="outline-none">
-            <ServiceGrid items={SERVICES.hair} />
-          </TabsContent>
+          <div className="flex flex-wrap gap-2">
+            {PRICE_FILTERS.map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setPriceFilter(f.key)}
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+                  priceFilter === f.key
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                    : "bg-background border-border/60 text-foreground hover:border-primary/40 hover:bg-primary/5"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-          <TabsContent value="nails" className="outline-none">
-            <ServiceGrid items={SERVICES.nails} />
-          </TabsContent>
+        {/* Search Results View */}
+        {isSearching ? (
+          <div>
+            <p className="text-sm text-muted-foreground mb-2">
+              {searchResults.length} result{searchResults.length !== 1 ? "s" : ""} for{" "}
+              <span className="font-medium text-foreground">"{searchQuery}"</span>
+            </p>
+            <ServiceGrid items={searchResults} />
+          </div>
+        ) : (
+          /* Tabbed View */
+          <Tabs defaultValue="hair" className="w-full">
+            <TabsList className="w-full mx-auto flex flex-row flex-wrap h-auto bg-transparent border-b border-border rounded-none p-0 mb-2 gap-0">
+              <TabsTrigger value="hair" className={TAB_TRIGGER_CLASS}>
+                Hair
+                {filteredForTab.hair.length < SERVICES.hair.length && (
+                  <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{filteredForTab.hair.length}</span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="nails" className={TAB_TRIGGER_CLASS}>
+                Nails
+                {filteredForTab.nails.length < SERVICES.nails.length && (
+                  <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{filteredForTab.nails.length}</span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="waxing" className={TAB_TRIGGER_CLASS}>
+                Waxing & Threading
+                {filteredForTab.waxing.length < SERVICES.waxing.length && (
+                  <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{filteredForTab.waxing.length}</span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="laser" className={TAB_TRIGGER_CLASS}>
+                Laser (Permanent)
+                {filteredForTab.laser.length < SERVICES.laser.length && (
+                  <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{filteredForTab.laser.length}</span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="massage" className={TAB_TRIGGER_CLASS}>
+                Massage & Wellness
+                {filteredForTab.massage.length < SERVICES.massage.length && (
+                  <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{filteredForTab.massage.length}</span>
+                )}
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="waxing" className="outline-none">
-            <ServiceGrid items={SERVICES.waxing} />
-          </TabsContent>
-
-          <TabsContent value="laser" className="outline-none">
-            <div className="mt-8 mb-6 p-4 bg-primary/5 border border-primary/15 rounded-xl text-sm text-muted-foreground">
-              <strong className="text-foreground">Session packages available.</strong> Prices shown are per single session. Save with our 6-session packages — see details when booking.
-            </div>
-            <ServiceGrid items={SERVICES.laser} />
-          </TabsContent>
-
-          <TabsContent value="massage" className="outline-none">
-            <ServiceGrid items={SERVICES.massage} />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="hair" className="outline-none">
+              <ServiceGrid items={filteredForTab.hair} />
+            </TabsContent>
+            <TabsContent value="nails" className="outline-none">
+              <ServiceGrid items={filteredForTab.nails} />
+            </TabsContent>
+            <TabsContent value="waxing" className="outline-none">
+              <ServiceGrid items={filteredForTab.waxing} />
+            </TabsContent>
+            <TabsContent value="laser" className="outline-none">
+              <div className="mt-4 mb-2 p-4 bg-primary/5 border border-primary/15 rounded-xl text-sm text-muted-foreground">
+                <strong className="text-foreground">Session packages available.</strong> Prices shown are per single session. Save with our 6-session packages — see details when booking.
+              </div>
+              <ServiceGrid items={filteredForTab.laser} />
+            </TabsContent>
+            <TabsContent value="massage" className="outline-none">
+              <ServiceGrid items={filteredForTab.massage} />
+            </TabsContent>
+          </Tabs>
+        )}
       </div>
     </PageTransition>
   );
