@@ -16,44 +16,44 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        <img 
-          src="/images/hero.png" 
-          alt="Luxury beauty salon interior at Kael Beauty Centre" 
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <img
+          src="/images/hero.png"
+          alt="Luxury beauty salon interior at Kael Beauty Centre, Earl's Court London"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto flex flex-col items-center">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-sm md:text-base tracking-[0.2em] uppercase mb-4"
+            transition={{ delay: 0.15 }}
+            className="text-xs md:text-sm tracking-[0.25em] uppercase mb-5 text-accent font-medium"
           >
             Earl's Court, London
           </motion.span>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6 drop-shadow-lg"
+            className="text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg leading-tight"
           >
             Where Beauty Meets Care
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto opacity-90"
+            transition={{ delay: 0.45 }}
+            className="text-base md:text-lg tracking-[0.12em] uppercase text-accent/90 font-medium mb-8"
           >
-            Your warmly intimate, expertly skilled beauty haven tucked into Earl's Court.
+            Pamper Yourself Because You Deserve It
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.6 }}
           >
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 py-6 rounded-full font-serif shadow-lg">
-              <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/85 text-base px-9 py-6 rounded-full font-serif shadow-xl border border-accent/30">
+              <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer" data-testid="button-book-appointment">
                 Book Your Appointment
               </a>
             </Button>

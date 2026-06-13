@@ -14,60 +14,61 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [location] = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
-        isScrolled ? "bg-background/95 backdrop-blur-md border-border/40 shadow-sm py-3" : "bg-background py-5"
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-serif text-2xl font-semibold tracking-tight text-primary">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-3">
+        <Link href="/" className="flex flex-col leading-none" data-testid="link-home-logo">
+          <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-accent">
             Kael Beauty Centre
+          </span>
+          <span className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-primary-foreground/60 mt-0.5">
+            Pamper Yourself Because You Deserve It
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => (
-            <Link 
-              key={link.href} 
+            <Link
+              key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location === link.href ? "text-primary" : "text-foreground/80"
+              data-testid={`link-nav-${link.label.toLowerCase()}`}
+              className={`text-sm font-medium transition-colors ${
+                location === link.href
+                  ? "text-accent"
+                  : "text-primary-foreground/75 hover:text-accent"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 ml-4 font-semibold px-6 rounded-full shadow-sm hover-elevate">
-            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+          <Button
+            asChild
+            className="bg-accent text-accent-foreground hover:bg-accent/85 ml-2 font-semibold px-6 rounded-full shadow-sm"
+            data-testid="button-book-now-nav"
+          >
+            <a
+              href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book Now
             </a>
           </Button>
         </nav>
 
-        {/* Mobile Nav Toggle */}
-        <button 
-          className="md:hidden p-2 text-foreground"
+        {/* Mobile toggle */}
+        <button
+          className="md:hidden p-2 text-primary-foreground"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
+          data-testid="button-mobile-menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -75,20 +76,29 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg py-4 px-4 flex flex-col gap-4">
+        <div className="md:hidden bg-primary border-t border-white/10 py-4 px-4 flex flex-col gap-2">
           {NAV_LINKS.map((link) => (
-            <Link 
-              key={link.href} 
+            <Link
+              key={link.href}
               href={link.href}
-              className={`text-lg font-medium px-4 py-2 rounded-md ${
-                location === link.href ? "bg-primary/10 text-primary" : "text-foreground/80"
+              className={`text-base font-medium px-4 py-3 rounded-md ${
+                location === link.href
+                  ? "bg-white/10 text-accent"
+                  : "text-primary-foreground/75 hover:bg-white/5 hover:text-accent"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <Button asChild className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold rounded-full">
-            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+          <Button
+            asChild
+            className="w-full mt-3 bg-accent text-accent-foreground hover:bg-accent/85 font-semibold rounded-full"
+          >
+            <a
+              href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book Now
             </a>
           </Button>
