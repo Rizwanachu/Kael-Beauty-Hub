@@ -100,7 +100,7 @@ export default function Services() {
 
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <Tabs defaultValue="laser" className="w-full">
-          <TabsList className="w-full max-w-2xl mx-auto flex flex-col md:flex-row h-auto bg-transparent border-b border-border rounded-none p-0 mb-8">
+          <TabsList className="w-full max-w-2xl mx-auto flex flex-row flex-wrap h-auto bg-transparent border-b border-border rounded-none p-0 mb-8">
             <TabsTrigger 
               value="laser" 
               className="flex-1 rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none py-4 text-base font-serif"

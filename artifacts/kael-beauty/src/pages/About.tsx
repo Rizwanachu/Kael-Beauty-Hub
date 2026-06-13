@@ -55,7 +55,7 @@ export default function About() {
             <p className="text-muted-foreground">The experts behind your glow.</p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
             {TEAM.map((member, i) => (
               <motion.div
                 key={member.name}
@@ -73,8 +73,8 @@ export default function About() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="font-serif text-xl font-semibold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground mb-1">{member.role}</p>
+                <h3 className="font-serif text-base md:text-xl font-semibold">{member.name}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground mb-1">{member.role}</p>
                 {member.rating && (
                   <div className="flex items-center justify-center gap-1 text-sm font-medium text-yellow-500">
                     <span>★</span> {member.rating}

@@ -35,7 +35,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg leading-tight"
+            className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg leading-tight"
           >
             Where Beauty Meets Care
           </motion.h1>
@@ -52,7 +52,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/85 text-base px-9 py-6 rounded-full font-serif shadow-xl border border-accent/30">
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/85 text-sm sm:text-base px-6 py-5 sm:px-9 sm:py-6 rounded-full font-serif shadow-xl border border-accent/30">
               <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer" data-testid="button-book-appointment">
                 Book Your Appointment
               </a>
@@ -99,7 +99,7 @@ export default function Home() {
       {/* Features */}
       <section className="py-20 bg-card border-y border-border/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-6xl mx-auto">
             {[
               {
                 icon: Sparkles,
@@ -172,11 +172,11 @@ export default function Home() {
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10" />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8">Ready to Glow?</h2>
-          <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto opacity-90">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold mb-6 md:mb-8">Ready to Glow?</h2>
+          <p className="text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto opacity-90">
             Book your appointment today and experience the difference of truly personalized care.
           </p>
-          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-white hover:text-accent font-semibold px-10 py-7 rounded-full text-lg shadow-xl transition-all duration-300">
+          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-white hover:text-accent font-semibold px-8 py-6 sm:px-10 sm:py-7 rounded-full text-base sm:text-lg shadow-xl transition-all duration-300">
             <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
               Book Now
             </a>

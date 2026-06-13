@@ -118,7 +118,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-primary-foreground/40">
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-primary-foreground/40 text-center md:text-left">
           <p>&copy; {new Date().getFullYear()} Kael Beauty Centre. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-accent transition-colors">Privacy Policy</a>
