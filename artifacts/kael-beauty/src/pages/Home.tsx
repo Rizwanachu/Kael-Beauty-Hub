@@ -90,6 +90,7 @@ function SectionCTA({
   href?: string;
   className?: string;
 }) {
+  const isInternal = href.startsWith("/");
   return (
     <div className={`flex justify-center mt-10 ${className}`}>
       <Button
@@ -97,9 +98,15 @@ function SectionCTA({
         size="lg"
         className="bg-accent text-accent-foreground hover:bg-accent/85 rounded-full px-8 py-5 font-serif text-base shadow-md"
       >
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          {text} <ArrowRight className="ml-2 w-4 h-4" />
-        </a>
+        {isInternal ? (
+          <Link href={href}>
+            {text} <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
+        ) : (
+          <a href={href} target="_blank" rel="noopener noreferrer">
+            {text} <ArrowRight className="ml-2 w-4 h-4" />
+          </a>
+        )}
       </Button>
     </div>
   );
@@ -321,7 +328,7 @@ export default function Home() {
             ))}
           </div>
 
-          <SectionCTA text="View Full Service Menu" href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" />
+          <SectionCTA text="View Full Service Menu" href="/services" />
         </div>
       </section>
 
