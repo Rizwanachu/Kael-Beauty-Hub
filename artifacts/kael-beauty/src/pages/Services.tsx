@@ -252,7 +252,7 @@ function LaserCard({ item, index }: { item: LaserItem; index: number }) {
   );
 }
 
-function ServiceGrid({ items }: { items: AnyItem[] }) {
+function ServiceGrid({ items, gridClass }: { items: AnyItem[]; gridClass?: string }) {
   if (items.length === 0) {
     return (
       <div className="text-center py-16 text-muted-foreground">
@@ -263,7 +263,7 @@ function ServiceGrid({ items }: { items: AnyItem[] }) {
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
+    <div className={`grid gap-6 pt-6 ${gridClass ?? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
       <AnimatePresence>
         {items.map((item, index) =>
           item.kind === "laser"
@@ -389,7 +389,7 @@ export default function Services() {
               <div className="mt-4 mb-2 p-4 bg-primary/5 border border-primary/15 rounded-xl text-sm text-muted-foreground">
                 <strong className="text-foreground">Session packages available.</strong> Book a single session or save with our 6-session packages.
               </div>
-              <ServiceGrid items={filtered.laser} />
+              <ServiceGrid items={filtered.laser} gridClass="grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" />
             </TabsContent>
             <TabsContent value="massage" className="outline-none"><ServiceGrid items={filtered.massage} /></TabsContent>
           </Tabs>

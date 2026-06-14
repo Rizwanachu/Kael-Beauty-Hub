@@ -8,7 +8,7 @@ import { Star } from "lucide-react";
 const REVIEWS = [
   {
     quote: "The colour has lasted for over a week, which is the longest ever.",
-    name: "Happy Customer",
+    name: "Verified Client",
     rating: 5,
   },
   {
@@ -18,7 +18,7 @@ const REVIEWS = [
   },
   {
     quote: "Love my toe nails and she hooked me up with a great price!",
-    name: "Loyal Regular",
+    name: "Verified Client",
     rating: 5,
   },
   {
@@ -29,6 +29,11 @@ const REVIEWS = [
   {
     quote: "It was so quick and flawless. Trusting her got me amazing results.",
     name: "Sophia",
+    rating: 5,
+  },
+  {
+    quote: "Nice experience, attentive to client's needs.",
+    name: "Monica",
     rating: 5,
   },
 ];

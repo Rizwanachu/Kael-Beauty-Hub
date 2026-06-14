@@ -16,7 +16,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/55 z-10" />
         <img
           src="/images/hero.png"
           alt="Luxury beauty salon interior at Kael Beauty Centre, Earl's Court London"
@@ -35,7 +35,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg leading-tight"
+            className="text-2xl sm:text-4xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg leading-tight max-w-[280px] sm:max-w-none mx-auto"
           >
             Where Beauty Meets Care
           </motion.h1>

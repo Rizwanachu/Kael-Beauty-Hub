@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ScrollToTopButton } from "@/components/layout/ScrollToTopButton";
 import { PageTransition } from "@/components/layout/PageTransition";
 
 import NotFound from "@/pages/not-found";
@@ -47,6 +48,7 @@ function App() {
               </main>
               <Footer />
               <WhatsAppButton />
+              <ScrollToTopButton />
             </div>
           </WouterRouter>
           <Toaster position="top-right" />

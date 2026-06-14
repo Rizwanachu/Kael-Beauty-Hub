@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Heart, Sparkles, ShieldCheck } from "lucide-react";
 
 const TEAM = [
-  { name: "Isha", role: "Beauty Therapist", rating: "4.4", image: "/images/team-1.png" },
-  { name: "Paryia", role: "Beauty Therapist", rating: "4.7", image: "/images/team-2.png" },
-  { name: "Zed", role: "Massage Therapist", rating: "4.8", image: "/images/team-3.png" },
-  { name: "Alysha", role: "Beauty Therapist", image: "/images/team-4.png" },
-  { name: "Fatma", role: "Beauty Therapist", image: "/images/team-5.png" },
+  { name: "Isha",   role: "Beauty Therapist",  rating: "4.4", image: "/images/team-1.png" },
+  { name: "Paryia", role: "Beauty Therapist",  rating: "4.7", image: "/images/team-2.png" },
+  { name: "Zed",   role: "Massage Therapist", rating: "4.8", image: "/images/team-3.png" },
+  { name: "Alysha", role: "Beauty Therapist",  rating: "4.3", image: "/images/team-4.png" },
+  { name: "Fatma", role: "Beauty Therapist",  rating: "4.3", image: "/images/team-5.png" },
 ];
 
 export default function About() {
@@ -72,12 +72,19 @@ export default function About() {
                     alt={member.name} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  {/* Photo placeholder ribbon */}
+                  <div className="absolute bottom-0 inset-x-0 z-20 bg-[#C9A96E]/90 text-white text-[9px] md:text-[10px] text-center py-1.5 px-1 leading-tight font-medium">
+                    Photo placeholder —<br className="sm:hidden" /> to be replaced with real team photo
+                  </div>
                 </div>
                 <h3 className="font-serif text-base md:text-xl font-semibold">{member.name}</h3>
                 <p className="text-xs md:text-sm text-muted-foreground mb-1">{member.role}</p>
                 {member.rating && (
-                  <div className="flex items-center justify-center gap-1 text-sm font-medium text-yellow-500">
-                    <span>★</span> {member.rating}
+                  <div className="flex flex-col items-center gap-0.5">
+                    <div className="flex items-center justify-center gap-1 text-sm font-medium text-yellow-500">
+                      <span>★</span> {member.rating}
+                    </div>
+                    <span className="text-[10px] text-muted-foreground">rated on Treatwell</span>
                   </div>
                 )}
               </motion.div>
