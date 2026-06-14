@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/kael-beauty run build",
+  "outputDirectory": "artifacts/kael-beauty/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [{ "source": "/((?!assets/).*)", "destination": "/index.html" }]
+}
