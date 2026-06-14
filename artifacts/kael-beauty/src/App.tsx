@@ -8,6 +8,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { ScrollToTopButton } from "@/components/layout/ScrollToTopButton";
+import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
 import { PageTransition } from "@/components/layout/PageTransition";
 
 import NotFound from "@/pages/not-found";
@@ -49,6 +50,7 @@ function App() {
               <Footer />
               <WhatsAppButton />
               <ScrollToTopButton />
+              <StickyMobileCTA />
             </div>
           </WouterRouter>
           <Toaster position="top-right" />

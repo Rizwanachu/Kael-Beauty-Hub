@@ -362,6 +362,19 @@ export default function Services() {
           </div>
         </div>
 
+        {/* Conversion banner */}
+        <div className="mb-8 rounded-2xl bg-primary/5 border border-primary/15 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-foreground">Ready to book a service?</p>
+            <p className="text-sm text-muted-foreground">Instant online booking — no waiting, no phone tag.</p>
+          </div>
+          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/85 rounded-full px-7 shrink-0">
+            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+              Book on Treatwell
+            </a>
+          </Button>
+        </div>
+
         {/* Search Results */}
         {isSearching ? (
           <div>

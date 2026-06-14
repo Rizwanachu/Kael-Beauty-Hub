@@ -2,6 +2,7 @@ import { SEO } from "@/components/SEO";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { motion } from "framer-motion";
 import { Heart, Sparkles, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TEAM = [
   { name: "Isha",   role: "Beauty Therapist",  rating: "4.4", image: "/images/team-1.png" },
@@ -89,6 +90,24 @@ export default function About() {
                 )}
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-14 bg-background border-b border-border/50">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-semibold mb-4">Ready to Experience the Kael Difference?</h2>
+          <p className="text-muted-foreground mb-8">Book your appointment online in seconds — or drop us a message if you have any questions.</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/85 rounded-full px-8">
+              <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+                Book Now
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full border-primary/25 hover:bg-primary hover:text-primary-foreground px-8">
+              <a href="/contact">Get in Touch</a>
+            </Button>
           </div>
         </div>
       </section>
