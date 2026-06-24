@@ -10,7 +10,11 @@ export function Footer() {
 
           <div className="md:col-span-1">
             <Link href="/" className="inline-block mb-3">
-              <span className="font-serif text-2xl font-bold text-accent">Kael Beauty Centre</span>
+              <img
+                src="/images/logo.png"
+                alt="Kael Beauty Centre"
+                className="h-16 w-auto"
+              />
             </Link>
             <p className="text-xs tracking-[0.15em] uppercase text-primary-foreground/50 mb-5">
               Pamper Yourself Because You Deserve It
