@@ -22,7 +22,7 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg mt-[0px] mb-[0px] pt-[5px] pb-[5px]">
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-3">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-3 pl-[16px] pr-[16px] pt-[0px] pb-[0px]">
         <Link href="/" className="flex items-center" data-testid="link-home-logo">
           <img
             src="/images/logo.png"
