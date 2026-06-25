@@ -226,11 +226,11 @@ function LaserCard({ item, index }: { item: LaserItem; index: number }) {
         </CardHeader>
         <CardContent className="pb-2 space-y-3">
           <div className="grid grid-cols-2 gap-2.5">
-            <div className="bg-muted/50 border border-border/50 rounded-xl p-3 text-center">
+            <div className="bg-[#f0eeeb] border border-[#e0dbd5] rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground mb-1 font-medium">1 Session</div>
               <div className="font-bold text-primary text-xl">{item.price1}</div>
             </div>
-            <div className="bg-primary/8 border border-primary/20 rounded-xl p-3 text-center">
+            <div className="bg-[#e8e4df] border border-[#d0cbc4] rounded-xl p-3 text-center">
               <div className="text-xs text-muted-foreground mb-1 font-medium">6 Sessions</div>
               <div className="font-bold text-primary text-xl">{item.price6}</div>
             </div>
@@ -303,7 +303,7 @@ export default function Services() {
     const original = SERVICES[key].length;
     const shown    = filtered[key].length;
     return shown < original ? (
-      <span className="ml-1.5 text-xs bg-primary/15 text-primary rounded-full px-1.5 py-0.5">{shown}</span>
+      <span className="ml-1.5 text-xs bg-[#dedad4] text-[#1b1e22] rounded-full px-1.5 py-0.5">{shown}</span>
     ) : null;
   };
 
@@ -354,7 +354,7 @@ export default function Services() {
                 className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
                   priceFilter === f.key
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background border-border/60 text-foreground hover:border-primary/40 hover:bg-primary/5"
+                    : "bg-background border-border/60 text-foreground hover:border-[#c9c4be] hover:bg-[#f0eeec]"
                 }`}>
                 {f.label}
               </button>
@@ -363,7 +363,7 @@ export default function Services() {
         </div>
 
         {/* Conversion banner */}
-        <div className="mb-8 rounded-2xl bg-primary/5 border border-primary/15 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mb-8 rounded-2xl bg-[#f5f2ee] border border-[#ddd9d3] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-foreground">Ready to book a service?</p>
             <p className="text-sm text-muted-foreground">Instant online booking — no waiting, no phone tag.</p>
@@ -399,7 +399,7 @@ export default function Services() {
             <TabsContent value="nails"   className="outline-none"><ServiceGrid items={filtered.nails} /></TabsContent>
             <TabsContent value="waxing"  className="outline-none"><ServiceGrid items={filtered.waxing} /></TabsContent>
             <TabsContent value="laser"   className="outline-none">
-              <div className="mt-4 mb-2 p-4 bg-primary/5 border border-primary/15 rounded-xl text-sm text-muted-foreground">
+              <div className="mt-4 mb-2 p-4 bg-[#f5f2ee] border border-[#ddd9d3] rounded-xl text-sm text-muted-foreground">
                 <strong className="text-foreground">Session packages available.</strong> Book a single session or save with our 6-session packages.
               </div>
               <ServiceGrid items={filtered.laser} gridClass="grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" />

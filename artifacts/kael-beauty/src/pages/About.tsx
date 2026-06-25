@@ -67,7 +67,6 @@ export default function About() {
                 className="text-center group"
               >
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-4 relative shadow-sm">
-                  <div className="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 transition-opacity group-hover:opacity-0" />
                   <img 
                     src={member.image} 
                     alt={member.name} 
@@ -114,7 +113,7 @@ export default function About() {
 
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 text-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -122,7 +122,7 @@ export default function Reviews() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center bg-primary/5 rounded-3xl p-10 md:p-16 border border-primary/10"
+          className="mt-20 text-center bg-[#f5f2ee] rounded-3xl p-10 md:p-16 border border-[#ddd9d3]"
         >
           <h2 className="text-2xl md:text-3xl font-serif font-semibold mb-4 text-primary">Happy with your visit?</h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">

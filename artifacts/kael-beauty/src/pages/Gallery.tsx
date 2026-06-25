@@ -75,7 +75,7 @@ export default function Gallery() {
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${
                 activeCat === cat
                   ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-secondary/20 text-foreground hover:bg-secondary/40"
+                  : "bg-[#e8e5e1] text-foreground hover:bg-[#d4d0ca]"
               }`}
             >
               {cat}
