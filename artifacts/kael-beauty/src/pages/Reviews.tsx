@@ -129,7 +129,7 @@ export default function Reviews() {
             Your feedback means the world to us. It helps us grow and helps others find their new favorite salon.
           </p>
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8">
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.google.com/search?sca_esv=c05f2014a7a2071a&q=Kael+Beauty+Centre+Reviews&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_7ARFYEsFFxZSh2ntOauPqeVg5osFk1qD0ABMQNp30jEb23l0_LtPByOis_DaOtwYE9HT7ZYUbjzA5sFHYdiaSF8do56Errfof5G413nRXwh4ZWMqg%3D%3D&sa=X&ved=2ahUKEwiGxYLL8KKVAxULxzgGHZ04ED0Q0bkNegQIPBAH#" target="_blank" rel="noopener noreferrer">
               Leave a Review on Google
             </a>
           </Button>
