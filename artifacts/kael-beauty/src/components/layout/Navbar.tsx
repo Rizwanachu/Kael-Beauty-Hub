@@ -27,7 +27,7 @@ export function Navbar() {
           <img
             src="/images/logo.png"
             alt="Kael Beauty Centre"
-            className="h-20 w-auto"
+            className="h-14 md:h-20 w-auto"
           />
         </Link>
 
