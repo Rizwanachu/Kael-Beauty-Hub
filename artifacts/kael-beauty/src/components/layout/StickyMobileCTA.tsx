@@ -3,11 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CalendarCheck } from "lucide-react";
 
 function getOpenStatus(): { open: boolean; label: string } {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
-  const h = now.getHours();
-  const m = now.getMinutes();
+  const londonParts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/London",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date());
+
+  const get = (type: string) =>
+    londonParts.find((p) => p.type === type)?.value ?? "";
+
+  const weekday = get("weekday"); // "Sun" | "Mon" | ... | "Sat"
+  const h = parseInt(get("hour"), 10);
+  const m = parseInt(get("minute"), 10);
   const mins = h * 60 + m;
+  const day = weekday === "Sun" ? 0 : 1; // 0 = Sunday, 1 = any Mon–Sat
 
   const open = 10 * 60;       // 10:00
   const closeSat = 19 * 60;   // 19:00 Mon–Sat
