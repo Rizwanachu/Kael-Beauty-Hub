@@ -369,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. TESTIMONIALS ─────────────────────────────── */}
-      <section className="py-20 md:py-28 bg-primary/3 border-y border-border/50">
+      <section className="py-20 md:py-28 bg-[#f5f2ee] border-y border-border/50">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-14">
             <p className="text-xs tracking-[0.2em] uppercase text-accent font-medium mb-3">Reviews</p>
