@@ -2,13 +2,34 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CalendarCheck } from "lucide-react";
 
+function getOpenStatus(): { open: boolean; label: string } {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const mins = h * 60 + m;
+
+  const open = 10 * 60;       // 10:00
+  const closeSat = 19 * 60;   // 19:00 Mon–Sat
+  const closeSun = 17 * 60 + 30; // 17:30 Sun
+
+  if (day === 0) {
+    // Sunday
+    const isOpen = mins >= open && mins < closeSun;
+    return { open: isOpen, label: isOpen ? "Open Now" : "Closed Today" };
+  }
+  // Mon–Sat (day 1–6)
+  const isOpen = mins >= open && mins < closeSat;
+  return { open: isOpen, label: isOpen ? "Open Now" : "Closed Today" };
+}
+
 export function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
+  const [status, setStatus] = useState(getOpenStatus);
 
   useEffect(() => {
     const onScroll = () => {
       const scrolled = window.scrollY > 120;
-      // Hide when near footer
       const nearBottom =
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 200;
@@ -16,6 +37,12 @@ export function StickyMobileCTA() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Refresh status every minute
+  useEffect(() => {
+    const id = setInterval(() => setStatus(getOpenStatus()), 60_000);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -33,7 +60,14 @@ export function StickyMobileCTA() {
               <p className="text-primary-foreground font-semibold text-sm truncate">
                 Kael Beauty Centre
               </p>
-              <p className="text-primary-foreground/60 text-xs">Earl's Court · Open Today</p>
+              <p className="text-primary-foreground/60 text-xs flex items-center gap-1.5">
+                <span
+                  className={`inline-block w-1.5 h-1.5 rounded-full ${
+                    status.open ? "bg-green-400" : "bg-red-400"
+                  }`}
+                />
+                Earl's Court · {status.label}
+              </p>
             </div>
             <a
               href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/"
