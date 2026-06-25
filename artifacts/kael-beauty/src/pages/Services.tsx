@@ -330,6 +330,19 @@ export default function Services() {
 
       <div className="container mx-auto px-4 py-12 max-w-6xl">
 
+        {/* Conversion banner */}
+        <div className="mb-8 rounded-2xl bg-[#f5f2ee] border border-[#ddd9d3] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-foreground">Ready to book a service?</p>
+            <p className="text-sm text-muted-foreground">Instant online booking — no waiting, no phone tag.</p>
+          </div>
+          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/85 rounded-full px-7 shrink-0">
+            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
+              Book on Treatwell
+            </a>
+          </Button>
+        </div>
+
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <div className="relative flex-1">
@@ -360,19 +373,6 @@ export default function Services() {
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Conversion banner */}
-        <div className="mb-8 rounded-2xl bg-[#f5f2ee] border border-[#ddd9d3] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <p className="font-semibold text-foreground">Ready to book a service?</p>
-            <p className="text-sm text-muted-foreground">Instant online booking — no waiting, no phone tag.</p>
-          </div>
-          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/85 rounded-full px-7 shrink-0">
-            <a href="https://www.treatwell.co.uk/place/kael-beauty-centre-earl-s-court-road/" target="_blank" rel="noopener noreferrer">
-              Book on Treatwell
-            </a>
-          </Button>
         </div>
 
         {/* Search Results */}
