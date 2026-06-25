@@ -456,7 +456,7 @@ export default function Home() {
               variant="outline"
               className="border-white/40 text-white hover:bg-white/15 hover:border-white font-semibold px-10 py-6 rounded-full text-base"
             >
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/gallery">View Gallery</Link>
             </Button>
           </motion.div>
         </div>
