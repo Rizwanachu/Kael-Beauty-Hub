@@ -20,7 +20,6 @@ export default function About() {
         description="Meet the expert team at Kael Beauty Centre. Passionate beauty therapists and massage specialists serving Earl's Court, London with care and skill."
         path="/about"
       />
-
       <section className="py-20 md:py-32 bg-card">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <motion.h1 
@@ -48,7 +47,6 @@ export default function About() {
           </motion.div>
         </div>
       </section>
-
       <section className="py-24 bg-background border-y border-border/50">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16">
@@ -92,7 +90,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
       {/* CTA */}
       <section className="py-14 bg-background border-b border-border/50">
         <div className="container mx-auto px-4 max-w-3xl text-center">
@@ -110,8 +107,7 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <section className="py-24 bg-primary text-primary-foreground">
+      <section className="py-24 bg-background text-foreground">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 text-center">
             <motion.div 
@@ -149,7 +145,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
     </PageTransition>
   );
 }
