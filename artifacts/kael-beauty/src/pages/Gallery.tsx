@@ -3,6 +3,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 const CATEGORIES = ["All", "Nails", "Brows & Lashes", "Massage", "Waxing"];
 
@@ -92,6 +93,76 @@ export default function Gallery() {
           >
             A glimpse into the exquisite results and serene atmosphere at Kael Beauty Centre.
           </motion.p>
+        </div>
+      </div>
+
+      {/* Before & After section */}
+      <div className="bg-[#f5f2ee] border-b border-[#e0dbd5]">
+        <div className="container mx-auto px-4 py-16 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-2">
+              Before &amp; After
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              Drag the handle to reveal the transformation
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+            >
+              <BeforeAfterSlider
+                before="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80"
+                after="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80&sat=-100"
+                beforeLabel="Natural"
+                afterLabel="Gel Nails"
+                alt="Nail enhancement"
+              />
+              <p className="text-center text-sm font-medium text-foreground mt-3">Gel Nail Enhancement</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <BeforeAfterSlider
+                before="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=750&fit=crop&q=80"
+                after="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=750&fit=crop&q=80"
+                beforeLabel="Before"
+                afterLabel="After"
+                alt="Brow lamination treatment"
+              />
+              <p className="text-center text-sm font-medium text-foreground mt-3">Brow Lamination</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="sm:col-span-2 lg:col-span-1"
+            >
+              <BeforeAfterSlider
+                before="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=750&fit=crop&q=80"
+                after="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=750&fit=crop&q=80"
+                beforeLabel="Before"
+                afterLabel="After"
+                alt="Lash lift and tint"
+              />
+              <p className="text-center text-sm font-medium text-foreground mt-3">Lash Lift &amp; Tint</p>
+            </motion.div>
+          </div>
         </div>
       </div>
 
