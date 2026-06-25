@@ -197,6 +197,11 @@ export default function Gallery() {
       </div>
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-2">Our Work</h2>
+          <p className="text-muted-foreground text-sm">Browse treatments by category</p>
+        </div>
+
         {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {CATEGORIES.map(cat => (
