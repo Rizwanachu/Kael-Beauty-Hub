@@ -5,6 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
+const BA_PAIRS = [
+  {
+    before: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80",
+    after:  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80&sat=-100",
+    beforeLabel: "Natural", afterLabel: "Gel Nails",
+    alt: "Nail enhancement", title: "Gel Nail Enhancement",
+  },
+  {
+    before: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=750&fit=crop&q=80",
+    after:  "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=750&fit=crop&q=80",
+    beforeLabel: "Before", afterLabel: "After",
+    alt: "Brow lamination treatment", title: "Brow Lamination",
+  },
+  {
+    before: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=750&fit=crop&q=80",
+    after:  "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=750&fit=crop&q=80",
+    beforeLabel: "Before", afterLabel: "After",
+    alt: "Lash lift and tint", title: "Lash Lift & Tint",
+  },
+];
+
 const CATEGORIES = ["All", "Nails", "Brows & Lashes", "Massage", "Waxing"];
 
 const IMAGES = [
@@ -34,7 +55,10 @@ const IMAGES = [
 
 export default function Gallery() {
   const [activeCat, setActiveCat] = useState("All");
-  const [lightbox, setLightbox] = useState<number | null>(null); // index into `filtered`
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [baIdx, setBaIdx] = useState(0);
+  const baPrev = () => setBaIdx(i => (i - 1 + BA_PAIRS.length) % BA_PAIRS.length);
+  const baNext = () => setBaIdx(i => (i + 1) % BA_PAIRS.length);
 
   const filtered = activeCat === "All"
     ? IMAGES
@@ -113,55 +137,61 @@ export default function Gallery() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0 }}
+          {/* Carousel */}
+          <div className="relative max-w-md mx-auto">
+            {/* Prev */}
+            <button
+              onClick={baPrev}
+              className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center text-[#1b1e22] transition-shadow"
+              aria-label="Previous"
             >
-              <BeforeAfterSlider
-                before="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80"
-                after="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80&sat=-100"
-                beforeLabel="Natural"
-                afterLabel="Gel Nails"
-                alt="Nail enhancement"
-              />
-              <p className="text-center text-sm font-medium text-foreground mt-3">Gel Nail Enhancement</p>
-            </motion.div>
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <BeforeAfterSlider
-                before="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=750&fit=crop&q=80"
-                after="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=750&fit=crop&q=80"
-                beforeLabel="Before"
-                afterLabel="After"
-                alt="Brow lamination treatment"
-              />
-              <p className="text-center text-sm font-medium text-foreground mt-3">Brow Lamination</p>
-            </motion.div>
+            {/* Slide */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={baIdx}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.25 }}
+              >
+                <BeforeAfterSlider
+                  before={BA_PAIRS[baIdx].before}
+                  after={BA_PAIRS[baIdx].after}
+                  beforeLabel={BA_PAIRS[baIdx].beforeLabel}
+                  afterLabel={BA_PAIRS[baIdx].afterLabel}
+                  alt={BA_PAIRS[baIdx].alt}
+                />
+                <p className="text-center text-sm font-medium text-foreground mt-3">
+                  {BA_PAIRS[baIdx].title}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="sm:col-span-2 lg:col-span-1"
+            {/* Next */}
+            <button
+              onClick={baNext}
+              className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg flex items-center justify-center text-[#1b1e22] transition-shadow"
+              aria-label="Next"
             >
-              <BeforeAfterSlider
-                before="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=750&fit=crop&q=80"
-                after="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=750&fit=crop&q=80"
-                beforeLabel="Before"
-                afterLabel="After"
-                alt="Lash lift and tint"
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {BA_PAIRS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setBaIdx(i)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i === baIdx ? "bg-primary" : "bg-[#c9c4be]"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
               />
-              <p className="text-center text-sm font-medium text-foreground mt-3">Lash Lift &amp; Tint</p>
-            </motion.div>
+            ))}
           </div>
         </div>
       </div>
