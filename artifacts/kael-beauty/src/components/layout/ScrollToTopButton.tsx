@@ -6,16 +6,15 @@ const RADIUS = 18;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 export function ScrollToTopButton() {
-  const [visible, setVisible]     = useState(false);
-  const [progress, setProgress]   = useState(0); // 0–1
+  const [visible, setVisible]   = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
       const scrolled = window.scrollY;
       const total    = document.documentElement.scrollHeight - window.innerHeight;
-      const pct      = total > 0 ? scrolled / total : 0;
       setVisible(scrolled > 300);
-      setProgress(pct);
+      setProgress(total > 0 ? scrolled / total : 0);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -32,22 +31,17 @@ export function ScrollToTopButton() {
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.2 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-36 right-4 md:bottom-24 md:right-6 z-50 w-11 h-11 flex items-center justify-center hover:scale-110 transition-transform duration-200"
           aria-label="Scroll to top"
+          className="fixed bottom-36 right-4 md:bottom-24 md:right-6 z-50 hover:scale-110 transition-transform duration-200"
+          style={{ width: 44, height: 44 }}
         >
           {/* Progress ring */}
           <svg
-            className="absolute inset-0 w-full h-full -rotate-90"
+            width="44" height="44"
             viewBox="0 0 44 44"
+            style={{ position: "absolute", top: 0, left: 0, transform: "rotate(-90deg)" }}
           >
-            {/* Track */}
-            <circle
-              cx="22" cy="22" r={RADIUS}
-              fill="none"
-              stroke="#e8e4df"
-              strokeWidth="2.5"
-            />
-            {/* Fill */}
+            <circle cx="22" cy="22" r={RADIUS} fill="none" stroke="#e8e4df" strokeWidth="2.5" />
             <circle
               cx="22" cy="22" r={RADIUS}
               fill="none"
@@ -60,8 +54,16 @@ export function ScrollToTopButton() {
             />
           </svg>
 
-          {/* Button face */}
-          <span className="relative z-10 w-8 h-8 bg-[#C9A96E] rounded-full flex items-center justify-center shadow-md">
+          {/* Centred button face */}
+          <span
+            style={{
+              position: "absolute",
+              top: "50%", left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 30, height: 30,
+            }}
+            className="bg-[#C9A96E] rounded-full flex items-center justify-center shadow-md"
+          >
             <ChevronUp className="w-4 h-4 text-white" />
           </span>
         </motion.button>
