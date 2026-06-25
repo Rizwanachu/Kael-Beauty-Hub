@@ -267,8 +267,8 @@ export default function Home() {
                   transition={{ delay: i * 0.1 }}
                   className="flex items-start gap-4 bg-card rounded-2xl p-5 border border-border/50"
                 >
-                  <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-[#C9A96E]/15 flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-[#C9A96E]" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">{title}</h3>
@@ -355,8 +355,8 @@ export default function Home() {
                 transition={{ delay: i * 0.08 }}
                 className="flex items-start gap-4 bg-card rounded-2xl p-6 border border-border/50 hover:border-accent/30 hover:shadow-sm transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                  <Icon className="w-5 h-5 text-accent" />
+                <div className="w-11 h-11 rounded-xl bg-[#C9A96E]/15 flex items-center justify-center shrink-0">
+                  <Icon className="w-5 h-5 text-[#C9A96E]" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">{title}</h3>
