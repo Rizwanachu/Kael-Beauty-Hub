@@ -59,15 +59,15 @@
   --popover-foreground: 220 10% 15%;
   --popover-border: 38 30% 88%;
 
-  /* Primary: dark charcoal — matches the sign background */
-  --primary: 216 12% 18%;
+  /* Primary: #1b1e22 deep charcoal */
+  --primary: 214 11% 12%;
   --primary-foreground: 38 40% 96%;
-  --primary-border: 216 12% 12%;
+  --primary-border: 214 11% 8%;
 
   /* Secondary: slightly lighter charcoal for hover states */
-  --secondary: 216 10% 28%;
+  --secondary: 214 10% 22%;
   --secondary-foreground: 38 40% 96%;
-  --secondary-border: 216 10% 22%;
+  --secondary-border: 214 10% 16%;
 
   --muted: 38 25% 91%;
   --muted-foreground: 220 8% 45%;
@@ -105,10 +105,10 @@
   --popover-foreground: 38 40% 96%;
   --popover-border: 216 12% 22%;
 
-  --primary: 216 12% 18%;
+  --primary: 214 11% 12%;
   --primary-foreground: 38 40% 96%;
 
-  --secondary: 216 10% 28%;
+  --secondary: 214 10% 22%;
   --secondary-foreground: 38 40% 96%;
 
   --muted: 216 12% 22%;
