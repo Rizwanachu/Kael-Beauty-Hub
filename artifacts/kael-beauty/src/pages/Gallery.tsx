@@ -1,7 +1,8 @@
 import { SEO } from "@/components/SEO";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 const CATEGORIES = ["All", "Nails", "Brows & Lashes", "Massage", "Waxing"];
 
@@ -32,10 +33,39 @@ const IMAGES = [
 
 export default function Gallery() {
   const [activeCat, setActiveCat] = useState("All");
+  const [lightbox, setLightbox] = useState<number | null>(null); // index into `filtered`
 
   const filtered = activeCat === "All"
     ? IMAGES
     : IMAGES.filter(img => img.category === activeCat);
+
+  const openAt = (idx: number) => setLightbox(idx);
+  const close   = () => setLightbox(null);
+
+  const prev = useCallback(() => {
+    setLightbox(i => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
+  }, [filtered.length]);
+
+  const next = useCallback(() => {
+    setLightbox(i => (i === null ? null : (i + 1) % filtered.length));
+  }, [filtered.length]);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape")     close();
+      if (e.key === "ArrowLeft")  prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox, prev, next]);
+
+  // Prevent body scroll when lightbox is open
+  useEffect(() => {
+    document.body.style.overflow = lightbox !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightbox]);
 
   return (
     <PageTransition>
@@ -66,12 +96,13 @@ export default function Gallery() {
       </div>
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
+        {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {CATEGORIES.map(cat => (
             <button
               key={cat}
               data-testid={`filter-${cat.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={() => setActiveCat(cat)}
+              onClick={() => { setActiveCat(cat); setLightbox(null); }}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${
                 activeCat === cat
                   ? "bg-primary text-primary-foreground shadow-md"
@@ -83,35 +114,101 @@ export default function Gallery() {
           ))}
         </div>
 
-        <motion.div layout className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-          <AnimatePresence>
-            {filtered.map((img) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                key={img.id}
-                data-testid={`gallery-image-${img.id}`}
-                className="break-inside-avoid relative group rounded-xl overflow-hidden bg-muted mb-4"
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                  <span className="text-white font-serif font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm text-sm">
-                    {img.category}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* Grid — all images visible immediately, no stagger */}
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          {filtered.map((img, idx) => (
+            <button
+              key={img.id}
+              data-testid={`gallery-image-${img.id}`}
+              onClick={() => openAt(idx)}
+              className="break-inside-avoid w-full relative group rounded-xl overflow-hidden bg-muted mb-4 block cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="eager"
+                decoding="async"
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3">
+                <span className="text-white text-xs font-medium bg-black/40 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                  {img.category}
+                </span>
+                <ZoomIn className="w-5 h-5 text-white drop-shadow" />
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <motion.div
+            key="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={close}
+          >
+            {/* Close */}
+            <button
+              onClick={close}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Prev */}
+            {filtered.length > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-3 md:left-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+
+            {/* Image */}
+            <motion.div
+              key={lightbox}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={filtered[lightbox].src}
+                alt={filtered[lightbox].alt}
+                className="max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-xl shadow-2xl"
+              />
+              <p className="mt-3 text-white/70 text-sm text-center px-4">
+                {filtered[lightbox].alt}
+              </p>
+              <p className="text-white/40 text-xs mt-1">
+                {lightbox + 1} / {filtered.length}
+              </p>
+            </motion.div>
+
+            {/* Next */}
+            {filtered.length > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-3 md:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 }
