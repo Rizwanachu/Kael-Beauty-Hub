@@ -233,7 +233,7 @@ export default function Contact() {
           className="mt-20 rounded-3xl overflow-hidden shadow-sm border border-border"
         >
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.0!2d-0.1922!3d51.4917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s115+Earls+Court+Rd,+London+SW5+9RL!5e0!3m2!1sen!2suk!4v1" 
+            src="https://maps.google.com/maps?q=Kael+Beauty+Centre,+115+Earls+Court+Road,+London+SW5+9RL&output=embed" 
             width="100%" 
             className="w-full h-[250px] sm:h-[350px] md:h-[450px]"
             style={{ border: 0 }} 
