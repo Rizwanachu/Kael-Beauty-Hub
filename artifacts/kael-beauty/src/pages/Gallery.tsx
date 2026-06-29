@@ -26,15 +26,13 @@ const BA_PAIRS = [
   },
 ];
 
-const CATEGORIES = ["All", "Nails", "Brows & Lashes", "Massage", "Waxing"];
+const CATEGORIES = ["All", "Hair", "Nails", "Massage", "Waxing"];
 
 const IMAGES = [
   { id: 1,  src: "/images/gallery-1.png",  alt: "Nude and pink ombre gel nail art",              category: "Nails" },
   { id: 2,  src: "/images/gallery-2.png",  alt: "Rose gold chrome mirror nail art",              category: "Nails" },
   { id: 3,  src: "/images/gallery-3.png",  alt: "3D floral nail art with crystals",              category: "Nails" },
-  { id: 4,  src: "/images/gallery-4.png",  alt: "Eyebrow lamination and shaping result",         category: "Brows & Lashes" },
-  { id: 5,  src: "/images/gallery-5.png",  alt: "Eyelash lift and extensions",                   category: "Brows & Lashes" },
-  { id: 6,  src: "/images/gallery-6.png",  alt: "Eyebrow tinting and lifting treatment",         category: "Brows & Lashes" },
+  { id: 4,  src: "/images/gallery-hair.png", alt: "Balayage hair colour treatment",               category: "Hair" },
   { id: 7,  src: "/images/gallery-7.png",  alt: "Deep tissue back massage treatment",            category: "Massage" },
   { id: 8,  src: "/images/gallery-8.png",  alt: "Hot stone massage at Kael Beauty Centre",       category: "Massage" },
   { id: 9,  src: "/images/gallery-9.png",  alt: "Aromatherapy massage with essential oils",      category: "Massage" },
