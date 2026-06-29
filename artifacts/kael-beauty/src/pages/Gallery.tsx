@@ -29,9 +29,9 @@ const BA_PAIRS = [
 const CATEGORIES = ["All", "Hair", "Nails", "Massage", "Waxing"];
 
 const IMAGES = [
-  { id: 1,  src: "/images/gallery-1.png",  alt: "Nude and pink ombre gel nail art",              category: "Nails" },
-  { id: 2,  src: "/images/gallery-2.png",  alt: "Rose gold chrome mirror nail art",              category: "Nails" },
-  { id: 3,  src: "/images/gallery-3.png",  alt: "3D floral nail art with crystals",              category: "Nails" },
+  { id: 1,  src: "/images/gallery-1.jpg",  alt: "Nude and pink ombre gel nail art",              category: "Nails" },
+  { id: 2,  src: "/images/gallery-2.jpg",  alt: "Rose gold chrome mirror nail art",              category: "Nails" },
+  { id: 3,  src: "/images/gallery-3.jpg",  alt: "3D floral nail art with crystals",              category: "Nails" },
   { id: 4,  src: "/images/gallery-hair.jpg",   alt: "Balayage hair colour treatment",              category: "Hair" },
   { id: 13, src: "/images/gallery-hair-2.jpg", alt: "Blonde curly hair styling",                  category: "Hair" },
   { id: 14, src: "/images/gallery-hair-3.jpg", alt: "Brunette ombre curls hair treatment",         category: "Hair" },
@@ -41,10 +41,10 @@ const IMAGES = [
   { id: 18, src: "/images/gallery-hair-7.jpg", alt: "Hair styling at Kael Beauty Centre",          category: "Hair" },
   { id: 19, src: "/images/gallery-hair-8.jpg", alt: "Curly hair treatment result",                 category: "Hair" },
   { id: 20, src: "/images/gallery-hair-9.jpg", alt: "Dark hair with highlights blow-dry finish",   category: "Hair" },
-  { id: 7,  src: "/images/gallery-7.png",  alt: "Deep tissue back massage treatment",            category: "Massage" },
-  { id: 8,  src: "/images/gallery-8.png",  alt: "Hot stone massage at Kael Beauty Centre",       category: "Massage" },
-  { id: 9,  src: "/images/gallery-9.png",  alt: "Aromatherapy massage with essential oils",      category: "Massage" },
-  { id: 10, src: "/images/gallery-10.png", alt: "Professional leg waxing treatment",             category: "Waxing" },
+  { id: 7,  src: "/images/gallery-7.jpg",  alt: "Deep tissue back massage treatment",            category: "Massage" },
+  { id: 8,  src: "/images/gallery-8.jpg",  alt: "Hot stone massage at Kael Beauty Centre",       category: "Massage" },
+  { id: 9,  src: "/images/gallery-9.jpg",  alt: "Aromatherapy massage with essential oils",      category: "Massage" },
+  { id: 10, src: "/images/gallery-10.jpg", alt: "Professional leg waxing treatment",             category: "Waxing" },
   {
     id: 11,
     src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=800&fit=crop&q=80",
