@@ -59,12 +59,37 @@ const IMAGES = [
   },
 ];
 
+// Preload every gallery image up-front so the grid renders fully loaded
+function usePreloadAll(srcs: string[]) {
+  const [loaded, setLoaded] = useState(0);
+  const total = srcs.length;
+
+  useEffect(() => {
+    let count = 0;
+    setLoaded(0);
+    srcs.forEach(src => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        count += 1;
+        setLoaded(count);
+      };
+      img.src = src;
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { loaded, total, done: loaded >= total };
+}
+
 export default function Gallery() {
   const [activeCat, setActiveCat] = useState("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [baIdx, setBaIdx] = useState(0);
   const baPrev = () => setBaIdx(i => (i - 1 + BA_PAIRS.length) % BA_PAIRS.length);
   const baNext = () => setBaIdx(i => (i + 1) % BA_PAIRS.length);
+
+  const allSrcs = IMAGES.map(img => img.src);
+  const { loaded, total, done } = usePreloadAll(allSrcs);
 
   const filtered = activeCat === "All"
     ? IMAGES
@@ -98,6 +123,8 @@ export default function Gallery() {
     return () => { document.body.style.overflow = ""; };
   }, [lightbox]);
 
+  const pct = total > 0 ? Math.round((loaded / total) * 100) : 0;
+
   return (
     <PageTransition>
       <SEO
@@ -105,6 +132,29 @@ export default function Gallery() {
         description="Browse our gallery of nail art, brow treatments, lash extensions and massage therapies at Kael Beauty Centre, Earl's Court, London."
         path="/gallery"
       />
+
+      {/* Loading overlay — visible until every image is cached */}
+      <AnimatePresence>
+        {!done && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[60] bg-background flex flex-col items-center justify-center gap-6"
+          >
+            <p className="font-serif text-2xl text-primary">Loading Gallery</p>
+            <div className="w-64 h-1.5 bg-[#e8e4df] rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-[#C9A96E] rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${pct}%` }}
+                transition={{ ease: "linear", duration: 0.15 }}
+              />
+            </div>
+            <p className="text-sm text-muted-foreground">{loaded} / {total} images</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="bg-card py-20 border-b border-border/50">
         <div className="container mx-auto px-4 text-center max-w-3xl">
