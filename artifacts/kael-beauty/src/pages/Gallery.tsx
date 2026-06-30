@@ -14,7 +14,7 @@ const BA_PAIRS = [
   },
 ];
 
-const CATEGORIES = ["All", "Hair", "Nails", "Massage", "Waxing"];
+const CATEGORIES = ["All", "Hair", "Nails"];
 
 const IMAGES = [
   { id: 1,  src: "/images/gallery-nails-1.jpg", alt: "Royal blue gel nail art with floral accent", category: "Nails" },
@@ -33,16 +33,6 @@ const IMAGES = [
   { id: 18, src: "/images/gallery-hair-7.jpg", alt: "Hair styling at Kael Beauty Centre",          category: "Hair" },
   { id: 19, src: "/images/gallery-hair-8.jpg", alt: "Curly hair treatment result",                 category: "Hair" },
   { id: 20, src: "/images/gallery-hair-9.jpg", alt: "Dark hair with highlights blow-dry finish",   category: "Hair" },
-  { id: 7,  src: "/images/gallery-7.jpg",  alt: "Deep tissue back massage treatment",            category: "Massage" },
-  { id: 8,  src: "/images/gallery-8.jpg",  alt: "Hot stone massage at Kael Beauty Centre",       category: "Massage" },
-  { id: 9,  src: "/images/gallery-9.jpg",  alt: "Aromatherapy massage with essential oils",      category: "Massage" },
-  { id: 10, src: "/images/gallery-10.jpg", alt: "Professional leg waxing treatment",             category: "Waxing" },
-  {
-    id: 11,
-    src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=800&fit=crop&q=80",
-    alt: "Eyebrow threading treatment at beauty salon",
-    category: "Waxing",
-  },
 ];
 
 export default function Gallery() {
