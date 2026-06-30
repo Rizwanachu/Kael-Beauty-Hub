@@ -29,9 +29,13 @@ const BA_PAIRS = [
 const CATEGORIES = ["All", "Hair", "Nails", "Massage", "Waxing"];
 
 const IMAGES = [
-  { id: 1,  src: "/images/gallery-1.jpg",  alt: "Nude and pink ombre gel nail art",              category: "Nails" },
-  { id: 2,  src: "/images/gallery-2.jpg",  alt: "Rose gold chrome mirror nail art",              category: "Nails" },
-  { id: 3,  src: "/images/gallery-3.jpg",  alt: "3D floral nail art with crystals",              category: "Nails" },
+  { id: 1,  src: "/images/gallery-nails-1.jpg", alt: "Royal blue gel nail art with floral accent", category: "Nails" },
+  { id: 2,  src: "/images/gallery-nails-2.jpg", alt: "Cream almond gel nails",                    category: "Nails" },
+  { id: 3,  src: "/images/gallery-nails-3.jpg", alt: "Soft pink almond gel nails",                category: "Nails" },
+  { id: 21, src: "/images/gallery-nails-4.jpg", alt: "Purple floral pedicure nail art",           category: "Nails" },
+  { id: 22, src: "/images/gallery-nails-5.jpg", alt: "Purple floral gel nail art",                category: "Nails" },
+  { id: 23, src: "/images/gallery-nails-6.jpg", alt: "Red gel nails with white line art",         category: "Nails" },
+  { id: 24, src: "/images/gallery-nails-7.jpg", alt: "Dark red gel nails with pink accent",       category: "Nails" },
   { id: 4,  src: "/images/gallery-hair.jpg",   alt: "Balayage hair colour treatment",              category: "Hair" },
   { id: 13, src: "/images/gallery-hair-2.jpg", alt: "Blonde curly hair styling",                  category: "Hair" },
   { id: 14, src: "/images/gallery-hair-3.jpg", alt: "Brunette ombre curls hair treatment",         category: "Hair" },
@@ -50,12 +54,6 @@ const IMAGES = [
     src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=800&fit=crop&q=80",
     alt: "Eyebrow threading treatment at beauty salon",
     category: "Waxing",
-  },
-  {
-    id: 12,
-    src: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=800&fit=crop&q=80",
-    alt: "Cat eye gel nail art with gold accents",
-    category: "Nails",
   },
 ];
 
