@@ -7,22 +7,10 @@ import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 const BA_PAIRS = [
   {
-    before: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80",
-    after:  "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=750&fit=crop&q=80&sat=-100",
-    beforeLabel: "Natural", afterLabel: "Gel Nails",
-    alt: "Nail enhancement", title: "Gel Nail Enhancement",
-  },
-  {
-    before: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=750&fit=crop&q=80",
-    after:  "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=750&fit=crop&q=80",
+    before: "/images/ba-before-1.jpg",
+    after:  "/images/ba-after-1.jpg",
     beforeLabel: "Before", afterLabel: "After",
-    alt: "Brow lamination treatment", title: "Brow Lamination",
-  },
-  {
-    before: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=750&fit=crop&q=80",
-    after:  "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&h=750&fit=crop&q=80",
-    beforeLabel: "Before", afterLabel: "After",
-    alt: "Lash lift and tint", title: "Lash Lift & Tint",
+    alt: "Brow treatment before and after", title: "Brow Treatment",
   },
 ];
 
